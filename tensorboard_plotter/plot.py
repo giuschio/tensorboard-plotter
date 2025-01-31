@@ -23,7 +23,7 @@ class TensorBoardPlotter:
     """
 
     def __init__(self,
-                 log_dir: str,
+                 logdir: str,
                  x_axis: str,
                  metric: str,
                  alpha: float,
@@ -34,7 +34,7 @@ class TensorBoardPlotter:
         """
         Parameters
         ----------
-        log_dir : str
+        logdir : str
             Directory containing subfolders (each subfolder is considered a 'version').
         x_axis : str
             Name of the column to use for the x-axis (e.g. "step", "wall_time").
@@ -55,7 +55,7 @@ class TensorBoardPlotter:
             If True, only plots the mean line of each version (no individual runs).
             If False (default), plots both the runs and the mean line.
         """
-        self.log_dir = log_dir
+        self.logdir = logdir
         self.x_axis = x_axis
         self.metric = metric
         self.alpha = alpha
@@ -126,8 +126,8 @@ class TensorBoardPlotter:
         """
         version_data = []
         # Sort subdirectories for consistent ordering
-        for version_name in sorted(os.listdir(self.log_dir)):
-            version_path = os.path.join(self.log_dir, version_name)
+        for version_name in sorted(os.listdir(self.logdir)):
+            version_path = os.path.join(self.logdir, version_name)
             if not os.path.isdir(version_path):
                 continue
 
@@ -366,7 +366,7 @@ def main():
             --plot_mean_only
     """
     parser = argparse.ArgumentParser(description="Plot metrics from TensorBoard logs.")
-    parser.add_argument("--log_dir",
+    parser.add_argument("--logdir",
                         type=str,
                         help="Directory containing version subfolders.",
                         required=True)
@@ -401,7 +401,7 @@ def main():
     args = parser.parse_args()
 
     plotter = TensorBoardPlotter(
-        log_dir=args.log_dir,
+        logdir=args.logdir,
         x_axis=args.x_axis,
         metric=args.metric,
         alpha=args.alpha,
