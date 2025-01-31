@@ -1,1 +1,1 @@
-from plot import TensorBoardPlotter
+from .plot import TensorBoardPlotter

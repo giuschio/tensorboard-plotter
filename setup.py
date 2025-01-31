@@ -15,7 +15,7 @@ setuptools.setup(
     entry_points={
         "console_scripts": [
             # console_script_name = package.module:function
-            "tensorboard-plotter = tensorboard_plotter.plot:main"
+            "tensorboard-plot = tensorboard_plotter.plot:main"
         ],
     },
     # If you have data files (like templates), you might need:
